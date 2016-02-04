@@ -1,0 +1,18 @@
+﻿Build started 2/1/2016 5:05:52 PM.
+     1>Project "D:\College Work\IT266\quake4\mpgame.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating ".\Release\mpgame.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         mpgame.vcxproj -> D:\College Work\IT266\quake4\.\Release\mpgame.dll
+       FinalizeBuildStatus:
+         Deleting file ".\Release\mpgame.unsuccessfulbuild".
+         Touching ".\Release\mpgame.lastbuildstate".
+     1>Done Building Project "D:\College Work\IT266\quake4\mpgame.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.76

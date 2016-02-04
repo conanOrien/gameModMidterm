@@ -1,0 +1,18 @@
+﻿Build started 2/1/2016 5:05:52 PM.
+     1>Project "D:\College Work\IT266\quake4\idlib.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "D:\College Work\IT266\quake4\Release\idlib.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Lib:
+         All outputs are up-to-date.
+         idlib.vcxproj -> D:\College Work\IT266\quake4\Release\idlib.lib
+       FinalizeBuildStatus:
+         Deleting file "D:\College Work\IT266\quake4\Release\idlib.unsuccessfulbuild".
+         Touching "D:\College Work\IT266\quake4\Release\idlib.lastbuildstate".
+     1>Done Building Project "D:\College Work\IT266\quake4\idlib.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.07

@@ -3231,8 +3231,12 @@ bool idPlayer::BalanceTeam( void ) {
 		}
 	}
 	
+	//ow5 Changes:
+	//Editing balance checking loop
+	//Passes if there is one player on seeking (human) team
+	//Fails otherwise
 	balanceTeam = -1;
-	if ( teamCount[ 0 ] < teamCount[ 1 ] ) {
+	if ( teamCount[ 0 ] != 1 ) {
 		balanceTeam = 0;
 	} else if ( teamCount[ 0 ] > teamCount[ 1 ] ) {
 		balanceTeam = 1;

@@ -35,8 +35,10 @@ const int	FOCUS_TIME					= 200;
 const int	FOCUS_GUI_TIME				= 300;
 const int	FOCUS_USABLE_TIME			= 100;
 
-const int	MAX_WEAPONS					= 16;
-const int	MAX_AMMO					= 16;
+// ow5 changes
+// Limit players to 1 weapon (gauntlet)
+const int	MAX_WEAPONS					= 1;
+const int	MAX_AMMO					= 1;
 const int	CARRYOVER_FLAG_AMMO			= 0x40000000;
 const int	CARRYOVER_FLAG_ARMOR_LIGHT	= 0x20000000;
 const int	CARRYOVER_FLAG_ARMOR_HEAVY	= 0x10000000;

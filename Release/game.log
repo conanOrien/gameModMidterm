@@ -1,0 +1,20 @@
+﻿Build started 3/2/2016 5:54:21 PM.
+     1>Project "D:\College Work\IT266\quake4\game.vcxproj" on node 3 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "D:\College Work\IT266\quake4\Release\game.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(D:\College Work\IT266\quake4\Release\game.dll) does not match the Linker's OutputFile property value (D:\College Work\IT266\quake4\Release\SPGamex86.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(game) does not match the Linker's OutputFile property value (SPGamex86). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         All outputs are up-to-date.
+         game.vcxproj -> D:\College Work\IT266\quake4\Release\game.dll
+       FinalizeBuildStatus:
+         Deleting file "D:\College Work\IT266\quake4\Release\game.unsuccessfulbuild".
+         Touching "D:\College Work\IT266\quake4\Release\game.lastbuildstate".
+     1>Done Building Project "D:\College Work\IT266\quake4\game.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.21

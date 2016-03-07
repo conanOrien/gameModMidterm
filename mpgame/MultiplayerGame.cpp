@@ -9051,8 +9051,6 @@ int idMultiplayerGame::VerifyTeamSwitch( int wantTeam, idPlayer *player ) {
 	balanceTeam = -1;
 	if ( teamCount[ TEAM_MARINE ] > teamCount[ TEAM_STROGG ] ) {
 		balanceTeam = TEAM_STROGG;
-	} else if ( teamCount[ TEAM_STROGG ] > teamCount[ TEAM_MARINE ] ) {
-		balanceTeam = TEAM_MARINE;
 	}
 
 	return (balanceTeam == -1) ? wantTeam : balanceTeam;

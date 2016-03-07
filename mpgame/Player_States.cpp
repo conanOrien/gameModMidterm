@@ -549,13 +549,20 @@ stateResult_t idPlayer::State_Legs_Crouch ( const stateParms_t& parms ) {
 		STAGE_INIT,
 		STAGE_WAIT
 	};
+
+	idPlayer *player;
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			PlayAnim ( ANIMCHANNEL_LEGS, "crouch_down", parms.blendFrames );
 			return SRESULT_STAGE ( STAGE_WAIT );
 		
 		case STAGE_WAIT:
-			if ( !IsLegsIdle ( true ) || AnimDone ( ANIMCHANNEL_LEGS, 4 ) ) {
+			if ( !IsLegsIdle ( true ) || AnimDone ( ANIMCHANNEL_LEGS, 4 && player->team == 0 ) ) {
+				PostAnimState ( ANIMCHANNEL_LEGS, "Legs_Crouch_Idle", parms.blendFrames );
+				return SRESULT_DONE;
+			}
+			
+			else ( !IsLegsIdle ( true ) || AnimDone ( ANIMCHANNEL_LEGS, 4 && player->team == 1 ) ) {
 				PostAnimState ( ANIMCHANNEL_LEGS, "Legs_Crouch_Idle", parms.blendFrames );
 				return SRESULT_DONE;
 			}

@@ -818,7 +818,7 @@ entityDef player_strogg
 	"strogg"							"1"		
 
 	"def_head"							"char_marinehead_kanestrg"
-	"model"								"model_player_strogg"
+	"model"								"model_player_strogg_2"
 
 	// stats
 	"health"							"125"
@@ -849,8 +849,71 @@ model model_player_fatigue_marine
 
 model model_player_tactical_transfer
 {
-	inherit							model_player_marine
-	mesh							models/characters/player/player_tactical_transfer.md5mesh
+
+	mesh							models/misc/barrel/barrel.md5mesh
+
+	anim gauntlet_fire			models/misc/barrel/idle.md5anim
+	anim gauntlet_aim			models/misc/barrel/idle.md5anim
+	anim gauntlet_idle			models/misc/barrel/idle.md5anim
+	anim gauntlet_lower			models/misc/barrel/idle.md5anim
+	anim crouch_down				models/misc/barrel/idle.md5anim
+	anim crouch						models/misc/barrel/idle.md5anim
+	anim crouch_up					models/misc/barrel/idle.md5anim
+	anim crouch_walk				models/misc/barrel/idle.md5anim
+	anim crouch_walk_backward		models/misc/barrel/idle.md5anim
+	anim mp_crouch_walk				models/misc/barrel/idle.md5anim
+	anim mp_crouch_walk_backward	models/misc/barrel/idle.md5anim
+	anim initial					models/misc/barrel/idle.md5anim
+	anim teleport					models/misc/barrel/idle.md5anim
+	anim exit						models/misc/barrel/idle.md5anim
+
+	anim idle						models/misc/barrel/idle.md5anim
+}
+
+model model_player_tactical_transfer_bright
+{
+
+	mesh							models/mapobjects/strogg/medlabs/bodytable/bodytable.md5mesh
+
+	anim gauntlet_fire			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim gauntlet_aim			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim gauntlet_idle			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim gauntlet_lower			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_down				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_up					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_walk				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_walk_backward		models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim mp_crouch_walk				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim mp_crouch_walk_backward	models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim initial					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim teleport					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim exit						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+
+	anim idle						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+}
+
+model model_player_disguise
+{
+
+	mesh							models/mapobjects/strogg/storage/casket_cin/casket_mesh.md5mesh
+
+	anim gauntlet_fire			models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim gauntlet_aim			models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim gauntlet_idle			models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim gauntlet_lower			models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim crouch_down				models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim crouch						models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim crouch_up					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim crouch_walk				models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim crouch_walk_backward		models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim mp_crouch_walk				models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim mp_crouch_walk_backward	models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim initial					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim teleport					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim exit						models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+
+	anim idle						models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
 }
 
 model model_player_failed_transfer
@@ -1034,7 +1097,7 @@ playerModel model_player_tactical_transfer {
 }
 
 playerModel model_player_tactical_transfer_bright {
-	"model"			"model_player_tactical_transfer"
+	"model"			"model_player_tactical_transfer_bright"
 	"def_head"		""
 	"skin"			"skins/multiplayer/strogg_bright"
 	"team"			"strogg"
@@ -1042,7 +1105,7 @@ playerModel model_player_tactical_transfer_bright {
 }
 
 playerModel model_player_kane_strogg {
-	"model"			"model_player_strogg"
+	"model"			"model_player_disguise"
 	"def_head"		"char_marinehead_kanestrg_client"
 	"def_head_ui"		"char_marinehead_kanestrg_mp"
 	"skin"			""
@@ -1054,8 +1117,6 @@ entityDef player_marine_mp
 {
 	"inherit"			"player_marine"
 
-	//ow5 changes
-	//Players spawn with only gauntlet
 	"weapon"			"weapon_gauntlet"
 	"current_weapon"		"0"
 
@@ -1350,6 +1411,7 @@ entityDef player_marine_mp_ui
 	"def_default_model"					"model_player_marine"
 	"def_default_model_marine"				"model_player_marine"
 	"def_default_model_strogg"				"model_player_kane_strogg"
+
 	
 	"powerup_effect_joints"				"*body -*r_wrist r_wrist -*l_wrist l_wrist"
 

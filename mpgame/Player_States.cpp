@@ -562,7 +562,7 @@ stateResult_t idPlayer::State_Legs_Crouch ( const stateParms_t& parms ) {
 				return SRESULT_DONE;
 			}
 			
-			else ( !IsLegsIdle ( true ) || AnimDone ( ANIMCHANNEL_LEGS, 4 && player->team == 1 ) ) {
+			else ( !IsLegsIdle ( true ) || AnimDone ( ANIMCHANNEL_LEGS, 4 && player->team == 1 ) ) ;{
 				PostAnimState ( ANIMCHANNEL_LEGS, "Legs_Crouch_Idle", parms.blendFrames );
 				return SRESULT_DONE;
 			}

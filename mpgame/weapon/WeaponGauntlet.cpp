@@ -287,15 +287,18 @@ void rvWeaponGauntlet::Attack ( void ) {
 				player = static_cast< idPlayer* >(ent);
 			}
 		
-			if ( player->team == TEAM_STROGG && ent->fl.takedamage ) {
+			if (ent->fl.takedamage ) {
+				if( player->team == TEAM_STROGG )
+				{
 				float dmgScale = 1.0f;
 				dmgScale *= owner->PowerUpModifier( PMOD_MELEE_DAMAGE );
 				ent->Damage ( owner, owner, playerViewAxis[0], spawnArgs.GetString ( "def_damage" ), dmgScale, 0 );
 				StartSound( "snd_hit", SND_CHANNEL_ANY, 0, false, NULL );
-				if ( ent->spawnArgs.GetBool( "bleed" ) ) {
-					PlayLoopSound( LOOP_FLESH );
-				} else {
-					PlayLoopSound( LOOP_WALL );
+					if ( ent->spawnArgs.GetBool( "bleed" ) ) {
+						PlayLoopSound( LOOP_FLESH );
+					} else {
+						PlayLoopSound( LOOP_WALL );
+					}
 				}
 			} else {
 				PlayLoopSound( LOOP_WALL );

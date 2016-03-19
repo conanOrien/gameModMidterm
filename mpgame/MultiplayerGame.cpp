@@ -3005,6 +3005,35 @@ void idMultiplayerGame::CommonRun( void ) {
 		cmdSystem->BufferCommandText( CMD_EXEC_APPEND, "spawnServer\n" );
 	}
 
+	
+	//ow5: Put this function here so that it runs on clients and server
+	for ( int i = 0; i < gameLocal.numClients; i++ )
+	{
+		idPlayer* player = (idPlayer*)gameLocal.entities[ i ];
+		if ( player && player->team == TEAM_STROGG && player->pfl.crouch && !player->pfl.wasCrouched )
+		{
+			if(player->disguise == 1)
+			{
+				player->SetModel("model_player_disguise1");
+			}
+			else if (player->disguise == 2)
+			{
+				player->SetModel("model_player_disguise2");
+			}
+			else if (player->disguise == 3)
+			{
+				player->SetModel("model_player_disguise3");
+			}
+			
+			player->pfl.wasCrouched = true;
+		}
+		if (player && player->team == TEAM_STROGG && !player->pfl.crouch && player->pfl.wasCrouched)
+		{
+			player->UpdateModelSetup(true);
+			player->pfl.wasCrouched = false;
+		}
+	}
+
 	if ( player && player->mphud ) {
 		// update icons
 		if ( gameLocal.isServer ) {

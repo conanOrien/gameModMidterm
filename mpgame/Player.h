@@ -177,6 +177,7 @@ enum {
 	INFLUENCE_LEVEL3,			// slow player movement
 };
 
+
 typedef enum { 
 	PTS_UNKNOWN = 0,
 	PTS_ADVANCED,
@@ -316,6 +317,7 @@ public:
 		bool		weaponFired		:1;
 		bool		jump			:1;
 		bool		crouch			:1;
+		bool		wasCrouched		:1;
 		bool		onGround		:1;
 		bool		onLadder		:1;
 		bool		dead			:1;
@@ -361,6 +363,8 @@ public:
 
 	// mp stuff
 	int						spectator;
+
+	int						disguise;
 
 	bool					scoreBoardOpen;
 	bool					forceScoreBoard;
@@ -434,6 +438,9 @@ public:
 	void					Restore( idRestoreGame *savefile );					// unarchives object from save game file
 
 	static const char*		GetSpawnClassname ( void );
+
+
+	void					costumePick( void );
 
 	virtual void			Hide( void );
 	virtual void			Show( void );

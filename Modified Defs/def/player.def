@@ -818,7 +818,7 @@ entityDef player_strogg
 	"strogg"							"1"		
 
 	"def_head"							"char_marinehead_kanestrg"
-	"model"								"model_player_strogg_2"
+	"model"								"model_player_strogg"
 
 	// stats
 	"health"							"125"
@@ -849,51 +849,12 @@ model model_player_fatigue_marine
 
 model model_player_tactical_transfer
 {
-
-	mesh							models/misc/barrel/barrel.md5mesh
-
-	anim gauntlet_fire			models/misc/barrel/idle.md5anim
-	anim gauntlet_aim			models/misc/barrel/idle.md5anim
-	anim gauntlet_idle			models/misc/barrel/idle.md5anim
-	anim gauntlet_lower			models/misc/barrel/idle.md5anim
-	anim crouch_down				models/misc/barrel/idle.md5anim
-	anim crouch						models/misc/barrel/idle.md5anim
-	anim crouch_up					models/misc/barrel/idle.md5anim
-	anim crouch_walk				models/misc/barrel/idle.md5anim
-	anim crouch_walk_backward		models/misc/barrel/idle.md5anim
-	anim mp_crouch_walk				models/misc/barrel/idle.md5anim
-	anim mp_crouch_walk_backward	models/misc/barrel/idle.md5anim
-	anim initial					models/misc/barrel/idle.md5anim
-	anim teleport					models/misc/barrel/idle.md5anim
-	anim exit						models/misc/barrel/idle.md5anim
-
-	anim idle						models/misc/barrel/idle.md5anim
+	inherit							model_player_marine
+	mesh							models/characters/player/player_tactical_transfer.md5mesh
+	
 }
 
-model model_player_tactical_transfer_bright
-{
-
-	mesh							models/mapobjects/strogg/medlabs/bodytable/bodytable.md5mesh
-
-	anim gauntlet_fire			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim gauntlet_aim			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim gauntlet_idle			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim gauntlet_lower			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim crouch_down				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim crouch						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim crouch_up					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim crouch_walk				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim crouch_walk_backward		models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim mp_crouch_walk				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim mp_crouch_walk_backward	models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim initial					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim teleport					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-	anim exit						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-
-	anim idle						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
-}
-
-model model_player_disguise
+model model_player_disguise1
 {
 
 	mesh							models/mapobjects/strogg/storage/casket_cin/casket_mesh.md5mesh
@@ -913,8 +874,98 @@ model model_player_disguise
 	anim teleport					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
 	anim exit						models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
 
+	anim soft_land					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim hard_land					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	
+	anim fall						models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+
+	anim turn_left					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim turn_right					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+
+	anim pain						models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim pain_head					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim pain_right_arm				models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim pain_left_arm				models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+	anim pain_chest					models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
+
 	anim idle						models/mapobjects/strogg/storage/casket_cin/casket_idle.md5anim
 }
+
+model model_player_disguise2
+{
+
+	mesh							models/mapobjects/strogg/medlabs/bodytable/bodytable.md5mesh
+
+	anim gauntlet_fire			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim gauntlet_aim			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim gauntlet_idle			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim gauntlet_lower			models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_down				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_up					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_walk				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim crouch_walk_backward		models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim mp_crouch_walk				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim mp_crouch_walk_backward	models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim initial					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim teleport					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim exit						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+
+	anim soft_land					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim hard_land					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	
+	anim fall						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+
+	anim turn_left					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim turn_right					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+
+	anim pain						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim pain_head					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim pain_right_arm				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim pain_left_arm				models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+	anim pain_chest					models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+
+	anim idle						models/mapobjects/strogg/medlabs/bodytable/idle.md5anim
+
+}
+
+model model_player_disguise3
+{
+
+	mesh							models/misc/barrel/barrel.md5mesh
+
+	anim gauntlet_fire			models/misc/barrel/idle.md5anim
+	anim gauntlet_aim			models/misc/barrel/idle.md5anim
+	anim gauntlet_idle			models/misc/barrel/idle.md5anim
+	anim gauntlet_lower			models/misc/barrel/idle.md5anim
+	anim crouch_down				models/misc/barrel/idle.md5anim
+	anim crouch						models/misc/barrel/idle.md5anim
+	anim crouch_up					models/misc/barrel/idle.md5anim
+	anim crouch_walk				models/misc/barrel/idle.md5anim
+	anim crouch_walk_backward		models/misc/barrel/idle.md5anim
+	anim mp_crouch_walk				models/misc/barrel/idle.md5anim
+	anim mp_crouch_walk_backward	models/misc/barrel/idle.md5anim
+	anim initial					models/misc/barrel/idle.md5anim
+	anim teleport					models/misc/barrel/idle.md5anim
+	anim exit						models/misc/barrel/idle.md5anim
+
+	anim soft_land					models/misc/barrel/idle.md5anim
+	anim hard_land					models/misc/barrel/idle.md5anim
+	
+	anim fall						models/misc/barrel/idle.md5anim
+
+	anim turn_left					models/misc/barrel/idle.md5anim
+	anim turn_right					models/misc/barrel/idle.md5anim
+
+	anim pain						models/misc/barrel/idle.md5anim
+	anim pain_head					models/misc/barrel/idle.md5anim
+	anim pain_right_arm				models/misc/barrel/idle.md5anim
+	anim pain_left_arm				models/misc/barrel/idle.md5anim
+	anim pain_chest					models/misc/barrel/idle.md5anim
+
+	anim idle						models/misc/barrel/idle.md5anim
+}
+
 
 model model_player_failed_transfer
 {
@@ -1097,7 +1148,7 @@ playerModel model_player_tactical_transfer {
 }
 
 playerModel model_player_tactical_transfer_bright {
-	"model"			"model_player_tactical_transfer_bright"
+	"model"			"model_player_tactical_transfer"
 	"def_head"		""
 	"skin"			"skins/multiplayer/strogg_bright"
 	"team"			"strogg"
@@ -1105,7 +1156,7 @@ playerModel model_player_tactical_transfer_bright {
 }
 
 playerModel model_player_kane_strogg {
-	"model"			"model_player_disguise"
+	"model"			"model_player_strogg"
 	"def_head"		"char_marinehead_kanestrg_client"
 	"def_head_ui"		"char_marinehead_kanestrg_mp"
 	"skin"			""

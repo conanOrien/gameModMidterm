@@ -317,7 +317,6 @@ public:
 		bool		weaponFired		:1;
 		bool		jump			:1;
 		bool		crouch			:1;
-		bool		wasCrouched		:1;
 		bool		onGround		:1;
 		bool		onLadder		:1;
 		bool		dead			:1;
@@ -332,6 +331,17 @@ public:
 		bool		hearingLoss		:1;
 		bool		objectiveFailed	:1;
 		bool		noFallingDamage :1;
+		bool		wasCrouched		:1;
+		bool		disguiseBroken	:1;
+		bool		disguiseLock	:1;
+		bool		boosted			:1;
+		bool		freeze			:1;
+		bool		cloak			:1;
+		bool		isCloaked		:1;
+		bool		glow			:1;
+		bool		isGlowing		:1;
+		bool		sneak			:1;
+
 	} pfl;
 		
 	// inventory
@@ -361,11 +371,19 @@ public:
 	int						nextArmorPulse;		// time when armor will tick down
 	bool					hiddenWeapon;		// if the weapon is hidden ( in noWeapons maps )
 
+													//ow5 player vars
+	int						disguise;
+	int						disguiseReload;
+	int						boostInit;
+	float					speedBoost;
+
+	int						freezeInit;
+	int						cloakInit;
+	int						glowInit;
+	int						sneakInit;				//ow5 end vars
+
 	// mp stuff
 	int						spectator;
-
-	int						disguise;
-
 	bool					scoreBoardOpen;
 	bool					forceScoreBoard;
 	bool					forceRespawn;

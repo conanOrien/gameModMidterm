@@ -775,27 +775,27 @@ void idPlayerView::RenderPlayerView( idUserInterface *hud ) {
 	soundSystem->PlaceListener( view->vieworg, view->viewaxis, player->entityNumber + 1, gameLocal.time, "Undefined" );
 	InfluenceVision( hud, view );
 	if ( g_skipViewEffects.GetBool() ) {
-		common->Printf("Influence Vision 1");
+//		common->Printf("Influence Vision 1");
 		SingleView( hud, view );
 	} else {
 
 		if ( player->GetInfluenceMaterial() || player->GetInfluenceEntity() ) {
 			InfluenceVision( hud, view );
 			guiRendered = true;
-			common->Printf("Influence Vision 2");
+//			common->Printf("Influence Vision 2");
 		} else if ( g_doubleVision.GetBool() && gameLocal.time < dvFinishTime ) {
 			DoubleVision( hud, view, dvFinishTime - gameLocal.time );
 			guiRendered = false;
-			common->Printf("Influence Vision 3");
+//			common->Printf("Influence Vision 3");
 		} else {
 			SingleView( hud, view, RF_NO_GUI | RF_PRIMARY_VIEW );
-			common->Printf("Influence Vision 4");
+//			common->Printf("Influence Vision 4");
 		}
 
 		// Now draw GUI's.
 		if ( !guiRendered ) {
 			SingleView( hud, view, RF_GUI_ONLY );
-			common->Printf("Influence Vision 5");
+//			common->Printf("Influence Vision 5");
 		}
 
 		ScreenFade();

@@ -341,11 +341,20 @@ idPlayer::State_Torso_Pain
 ================
 */
 stateResult_t idPlayer::State_Torso_Pain ( const stateParms_t& parms ) {
-	PlayAnim ( ANIMCHANNEL_TORSO, painAnim.Length()?painAnim:"pain", parms.blendFrames );
-	PostAnimState ( ANIMCHANNEL_TORSO, "Wait_TorsoAnim", 4  );
-	PostAnimState ( ANIMCHANNEL_TORSO, "Torso_Idle", 4 );
-	return SRESULT_DONE;
+	
+	if(team == TEAM_MARINE)
+	{
+		PlayAnim ( ANIMCHANNEL_TORSO, painAnim.Length()?painAnim:"pain", parms.blendFrames );
+		PostAnimState ( ANIMCHANNEL_TORSO, "Wait_TorsoAnim", 4  );
+		PostAnimState ( ANIMCHANNEL_TORSO, "Torso_Idle", 4 );
+		return SRESULT_DONE;
+	}
+	else
+	{
+		return SRESULT_DONE;
+	}
 }
+
 
 /*
 ================

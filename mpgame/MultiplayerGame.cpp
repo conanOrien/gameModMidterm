@@ -3032,7 +3032,88 @@ void idMultiplayerGame::CommonRun( void ) {
 			player->UpdateModelSetup(true);
 			player->pfl.wasCrouched = false;
 		}
+		if (player->pfl.disguiseBroken && !player->pfl.disguiseLock)
+		{
+			player->pfl.disguiseLock = true;
+			player->UpdateModelSetup(true);
+			player->disguiseReload = player->lastDmgTime + 6000;
+		}
+		if(gameLocal.time >= player->disguiseReload)
+		{
+				player->pfl.disguiseLock = false;
+		}
 	}
+
+	if( player && player->pfl.boosted)
+	{
+		if(player->team == TEAM_STROGG && gameLocal.time >= player->boostInit + 4500)
+		{
+			player->pfl.boosted = false;
+			player->speedBoost = 1.0f;
+		}
+		if(player->team == TEAM_MARINE && gameLocal.time >= player->boostInit + 6000)
+		{
+			player->pfl.boosted = false;
+			player->speedBoost = 1.0f;
+		}
+	}
+	
+	if( player && player->pfl.freeze )
+	{
+			if(gameLocal.time <= player->freezeInit + 9000)
+			{
+				player->speedBoost = 0.0f;
+			}
+			else
+			{
+				player->speedBoost = 1.0f;
+			}
+	}
+	
+	
+
+	if( player && player->pfl.cloak )
+	{
+		if(!player->pfl.isCloaked)
+		{
+			player->StartPowerUpEffect(3);
+			player->pfl.isCloaked = true;
+			player->GivePowerUp(3,9000,false);
+		}
+		else if( gameLocal.time >= player->cloakInit + 9000 )
+		{
+			player->ClearPowerup(3);
+			player->inventory.powerups &= ~( 1 << 3 );
+			player->inventory.powerupEndTime[ 3 ] = 0;
+			player->pfl.isCloaked = false;
+			player->pfl.cloak = false;
+		}
+	}
+
+	if( player->pfl.glow )
+	{
+		if(!player->pfl.isGlowing)
+		{
+			player->StartPowerUpEffect(10);
+			player->pfl.isGlowing = true;
+		}
+		else if( gameLocal.time >= player->glowInit + 5000 )
+		{
+			player->StopPowerUpEffect(10);
+			player->pfl.isGlowing = false;
+			player->pfl.glow = false;
+		}
+	}
+
+	if(player->pfl.sneak)
+	{
+		if(gameLocal.time >= player->sneakInit + 5000)
+		{
+			player->pfl.sneak = false;
+		}
+	}
+
+
 
 	if ( player && player->mphud ) {
 		// update icons
@@ -3290,6 +3371,7 @@ void idMultiplayerGame::CommonRun( void ) {
 		hud_showSpeed.ClearModified();
 	}
 }
+
 
 /*
 ================

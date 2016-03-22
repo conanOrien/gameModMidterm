@@ -590,7 +590,81 @@ bool idItem::GiveToPlayer( idPlayer *player ) {
 		return false;
 	}
 
-	player->Drink(10);
+	
+	//ow5: Modified pickup abilities
+	if(player && spawnArgs.GetBool("butts")) //healthshards
+	{
+		if(player->team == TEAM_STROGG)
+		{
+			player->disguise = rand() % 3+1;
+		}
+		if(player->team == TEAM_MARINE)
+		{
+			player->pfl.sneak = 1;
+			player->sneakInit = gameLocal.time;
+		}
+	}
+
+	if(player && spawnArgs.GetBool("speed")) //armorshards
+	{
+		if(player->team == TEAM_STROGG )				{
+			if(!player->pfl.boosted)				{
+				player->pfl.boosted = true;
+				player->boostInit = gameLocal.time;
+				player->speedBoost = 1.2f;			}
+			else									{
+				player->boostInit = gameLocal.time;
+				if(player->speedBoost < 2.99)	{
+					player->speedBoost *= 1.2f;	}
+													}	}
+		if(player->team == TEAM_MARINE)					{
+			if(!player->pfl.boosted)				{
+				player->pfl.boosted = true;
+				player->boostInit = gameLocal.time;
+				player->speedBoost = 1.45f;			}
+			else									{
+				player->boostInit = gameLocal.time;
+													}
+														}
+	}
+
+	if(player && spawnArgs.GetBool( "large" )) //Large Health Orb
+	{
+		if(player->team == TEAM_STROGG )
+		{
+			for ( int i = 0; i < gameLocal.numClients; i++ )
+			{
+				idPlayer* p = (idPlayer*)gameLocal.entities[ i ];
+					if ( p && p->team == TEAM_MARINE)
+					{
+						player->pfl.freeze = true;
+						player->freezeInit = gameLocal.time;
+					}
+			}
+		}
+		if(player->team == TEAM_MARINE)
+		{
+			//spawn powerup effect on all strogg members for 5 sec
+			for ( int i = 0; i < gameLocal.numClients; i++ )
+			{
+				idPlayer* p = (idPlayer*)gameLocal.entities[ i ];
+				if ( p && p->team == TEAM_STROGG)
+				{
+					p->pfl.glow = true;
+					p->glowInit = gameLocal.time;
+				}
+			}
+	
+		}
+	}
+
+	if(player && player->team == TEAM_MARINE && spawnArgs.GetBool( "ungh" ))//small health orb
+	{
+		player->cloakInit = gameLocal.time;
+		player->pfl.cloak = true;
+
+	}
+
 
 	if ( spawnArgs.GetBool( "inv_carry" ) ) {
 		return player->GiveInventoryItem( &spawnArgs );

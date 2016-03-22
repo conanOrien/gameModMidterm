@@ -890,11 +890,11 @@ bool idInventory::Give( idPlayer *owner, const idDict &spawnArgs, const char *st
 // RAVEN END
 	} else if ( !idStr::Icmp( statname, "armor" ) ) {
 		if ( armor >= maxarmor * 2 ) {
-			return false;
+			//return false;
 		}
 	} else 	if ( !idStr::Icmp( statname, "health" ) ) {
 		if ( owner->health >= maxHealth ) {
-			return false;
+			//return false;
 		}
 	} else if ( idStr::FindText( statname, "inclip_" ) == 0 ) {
 		i = owner->SlotForWeapon ( statname + 7 );
@@ -1382,11 +1382,6 @@ void idPlayer::Digest()
 	if (bal > 1)
 	{
 		bal -= 0.1;
-		common->Printf("digesting.... BOOOZE\n");
-	}
-	else
-	{
-		common->Printf("HAIL HYDRA\n");
 	}
 	if (sal > 1)
 	{
@@ -4232,7 +4227,7 @@ bool idPlayer::Give( const char *statname, const char *value, bool dropped ) {
 
 	if ( !idStr::Icmp( statname, "health" ) ) {
 		if ( health >= boundaryHealth ) {
-			return false;
+			//return false;
 		}
  		amount = atoi( value );
  		if ( amount ) {
@@ -4244,7 +4239,7 @@ bool idPlayer::Give( const char *statname, const char *value, bool dropped ) {
 	} else if ( !idStr::Icmp( statname, "bonushealth" ) ) {
 		// allow health over max health
 		if ( health >= boundaryHealth * 2 ) {
-			return false;
+			//return false;
 		}
 		amount = atoi( value );
  		if ( amount ) {
@@ -8759,9 +8754,14 @@ void idPlayer::AdjustSpeed( void ) {
 	if ( influenceActive == INFLUENCE_LEVEL3 ) {
 		speed *= 0.33f;
 	}
+
+	if(pfl.boosted == true)
+	{
+		speed = speed*speedBoost;
+	}
 	
-	
-	physicsObj.SetSpeed( speed, pm_crouchspeed.GetFloat() );
+//	common->Printf("%s", speed);
+	physicsObj.SetSpeed( speed, speed );
 }
 
 /*
@@ -9353,33 +9353,6 @@ Called every tic for each player
 */
 void idPlayer::Think( void ) {
 	renderEntity_t *headRenderEnt;
-
-	for ( int i = 0; i < gameLocal.numClients; i++ )
-	{
-		bool wasCrouched = false;
-		idPlayer* player = (idPlayer*)gameLocal.entities[ i ];
-		if ( player && player->team == TEAM_STROGG && player->pfl.crouch && !player->pfl.wasCrouched)
-		{
-			if(player->disguise == 1)
-			{
-				player->SetModel("model_player_disguise1");
-			}
-			else if (player->disguise == 2)
-			{
-				player->SetModel("model_player_disguise2");
-			}
-			else if (player->disguise == 3)
-			{
-				player->SetModel("model_player_disguise3");
-			}
-			player->pfl.wasCrouched = true;
-		}
-		if (player && player->team == TEAM_STROGG && !player->pfl.crouch && player->pfl.wasCrouched)
-		{
-			player->UpdateModelSetup(true);
-			player->pfl.wasCrouched = false;
-		}
-	}
 
 	if ( talkingNPC ) {
 		if ( !talkingNPC.IsValid() ) {

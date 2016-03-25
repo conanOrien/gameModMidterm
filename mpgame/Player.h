@@ -147,6 +147,13 @@ enum {
 	POWERUP_TEAM_HEALTH_REGEN,
 	POWERUP_TEAM_DAMAGE_MOD,
 	
+	//ow5 Powerups
+	POWERUP_SPEED,
+	POWERUP_FREEZE,
+	POWERUP_GLOW,
+	POWERUP_NODISGUISE,
+	POWERUP_QUIETWALK,
+
 	POWERUP_MAX
 };
 
@@ -333,15 +340,7 @@ public:
 		bool		noFallingDamage :1;
 		bool		wasCrouched		:1;
 		bool		disguiseBroken	:1;
-		bool		disguiseLock	:1;
-		bool		boosted			:1;
-		bool		freeze			:1;
-		bool		cloak			:1;
-		bool		isCloaked		:1;
-		bool		glow			:1;
-		bool		isGlowing		:1;
-		bool		sneak			:1;
-
+		bool		sneaking		:1;
 	} pfl;
 		
 	// inventory
@@ -371,16 +370,10 @@ public:
 	int						nextArmorPulse;		// time when armor will tick down
 	bool					hiddenWeapon;		// if the weapon is hidden ( in noWeapons maps )
 
-													//ow5 player vars
+	//ow5
 	int						disguise;
-	int						disguiseReload;
-	int						boostInit;
-	float					speedBoost;
+	int						speedBoost;
 
-	int						freezeInit;
-	int						cloakInit;
-	int						glowInit;
-	int						sneakInit;				//ow5 end vars
 
 	// mp stuff
 	int						spectator;

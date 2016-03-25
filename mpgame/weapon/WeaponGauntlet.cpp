@@ -291,6 +291,7 @@ void rvWeaponGauntlet::Attack ( void ) {
 				if( player->team == TEAM_STROGG )
 				{
 				float dmgScale = 1.0f;
+				player->GivePowerUp(19,5000,false);
 				dmgScale *= owner->PowerUpModifier( PMOD_MELEE_DAMAGE );
 				ent->Damage ( owner, owner, playerViewAxis[0], spawnArgs.GetString ( "def_damage" ), dmgScale, 0 );
 				StartSound( "snd_hit", SND_CHANNEL_ANY, 0, false, NULL );

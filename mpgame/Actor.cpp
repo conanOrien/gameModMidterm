@@ -2907,8 +2907,9 @@ idActor::FootStep
 void idActor::FootStep( void ) {
 	const char*				sound;
 	const rvDeclMatType*	materialType;
+	idPlayer* player = gameLocal.GetLocalPlayer();
 
-	if ( !GetPhysics()->HasGroundContacts() ) {
+	if ( !GetPhysics()->HasGroundContacts() || player->pfl.sneaking) {
 		return;
 	}
 

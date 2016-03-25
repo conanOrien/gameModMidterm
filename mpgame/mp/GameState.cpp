@@ -896,11 +896,9 @@ void rvTeamDMGameState::Run( void ) {
 
 	switch( currentState ) {
 		case GAMEON: {
-			int matchStart = gameLocal.time;
 			int timeLimit = gameLocal.serverInfo.GetInt( "si_timeLimit" ) * 60000;
-			int gameOver = matchStart + timeLimit;
 
-			if (gameLocal.mpGame.GetScoreForTeam( TEAM_MARINE ) == gameLocal.numClients - 1 || gameLocal.time >= gameOver )
+			if (gameLocal.mpGame.GetScoreForTeam( TEAM_MARINE ) == gameLocal.numClients - 1 || gameLocal.mpGame.TimeLimitHit() )
 			{
 				NewState( GAMEREVIEW );
 			}

@@ -1254,7 +1254,9 @@ idPlayer::idPlayer() {
 	teleportKiller			= -1;
 	lastKiller				= NULL;
 
+	//ow5
 	disguise				= rand() % 3+1;
+	speedBoost				= 0;
 
  	respawning				= false;
  	ready					= false;
@@ -3720,7 +3722,7 @@ void idPlayer::UpdateHudPowerUps( idUserInterface *_hud ) {
 			continue;
 		}
 			
-		if ( inventory.powerupEndTime[i] > gameLocal.time || inventory.powerupEndTime[i] == -1 ) {
+		if ( (inventory.powerupEndTime[i] > gameLocal.time || inventory.powerupEndTime[i] == -1) && i < 16 ) {
 			// If there is still time remaining on the powerup then update the hud		
 			// for flags, set the powerup_flag_* variables, which give us a special pulsing flag display
 			if( i == POWERUP_CTF_MARINEFLAG || i == POWERUP_CTF_STROGGFLAG || i == POWERUP_CTF_ONEFLAG ) {
@@ -4508,8 +4510,63 @@ float idPlayer::PowerUpModifier( int type ) {
 		}
 	}
 
+	//ow5
+	if( PowerUpActive (POWERUP_SPEED) )
+	{
+		switch( team ){
+			case TEAM_STROGG: {
+				speedBoost ++;
+
+				switch(speedBoost)
+				case 1:{
+					mod *=1.2f;
+					break;
+				}
+				case 2:{
+					mod *=1.44f;
+					
+					break;
+				}
+				case 3:{
+					mod *=1.75f;
+					
+					break;
+				}
+				case 4:{
+					mod *=2.1f;
+					
+					break;
+				}
+				case 5:{
+					mod *=2.1f;
+					
+					speedBoost = 4;
+					break;
+				}
+				
+			}
+			case TEAM_MARINE:{
+				mod *= 1.44f;
+			}
+		}
+	}
+	//ow5
+	if( PowerUpActive (POWERUP_FREEZE) )
+	{
+		mod *= 0.0f;
+	}
+	if(PowerUpActive (POWERUP_QUIETWALK))
+	{
+		mod *= 1.0f;
+	}
+	if( PowerUpActive (POWERUP_NODISGUISE) )
+	{
+		mod *= 0.0f;
+	}
+
 	return mod;
 }
+
 
 /*
 ===============
@@ -4666,6 +4723,14 @@ void idPlayer::StartPowerUpEffect( int powerup ) {
 			arenaEffect = PlayEffect( "fx_doubler", renderEntity.origin, renderEntity.axis, true );
 			break;
 		}
+		case POWERUP_FREEZE:{
+			PlayEffect( "fx_quaddamage", animator.GetJointHandle( "origin" ), true );
+			break;
+		}
+		case POWERUP_GLOW:{
+			PlayEffect( "fx_scout", physicsObj.GetOrigin(), physicsObj.GetAxis(), true );
+			break;
+		}
 	}
 }
 
@@ -4758,6 +4823,14 @@ void idPlayer::StopPowerUpEffect( int powerup ) {
 		case POWERUP_AMMOREGEN: {
 			teamAmmoRegenPending = false;
 			StopEffect( "fx_ammoregen" );
+			break;
+		}
+		case POWERUP_FREEZE:{
+			StopEffect( "fx_quaddamage");
+			break;
+		}
+		case POWERUP_GLOW:{
+			StopEffect( "fx_scout" );
 			break;
 		}
 	}
@@ -4890,6 +4963,24 @@ bool idPlayer::GivePowerUp( int powerup, int time, bool team ) {
 			}
 			break;
 		}
+		case POWERUP_SPEED:{
+			break;
+		}
+		case POWERUP_FREEZE:{
+			break;
+		}
+		case POWERUP_GLOW:{
+			break;
+		}
+		case POWERUP_NODISGUISE:{
+			pfl.disguiseBroken = true;
+			UpdateModelSetup(true);
+			break;
+		}
+		case POWERUP_QUIETWALK:{
+			pfl.sneaking = true;
+			break;
+		}
 //RITUAL END
 	}
 
@@ -4995,6 +5086,7 @@ void idPlayer::UpdatePowerUps( void ) {
 				gameLocal.mpGame.GetGameState()->SpawnDeadZonePowerup();
 			}
 			// Powerup time has run out so take it away from the player
+			pfl.disguiseBroken = false;
 			ClearPowerup( i );
 		}
 	}
@@ -5903,7 +5995,12 @@ void idPlayer::DropPowerups( void ) {
 
 	assert( !gameLocal.isClient );
 
+
 	for ( i = 0; i < POWERUP_MAX; i++ ) {
+		if(i >= 16)
+		{
+			return;
+		}
 		if ( !(inventory.powerups & ( 1 << i )) ) {
 			continue;
 		}		
@@ -5980,15 +6077,20 @@ void idPlayer::RespawnFlags ( void ) {
 	idEntity*	item;
 
 	assert( !gameLocal.isClient );
-
+	
 	for ( i = POWERUP_CTF_MARINEFLAG; i < POWERUP_CTF_ONEFLAG; i++ ) {
 		if ( !(inventory.powerups & ( 1 << i )) ) {
 			continue;
 		}		
 		
+		if(i >= 16)
+		{
+			return;
+		}
+
 		const idDeclEntityDef* def;
 		def = GetPowerupDef ( i );
-		if ( !def ) {
+		if ( !def ) { //ow5 added logic to prevent game crash on respawn
 			continue;
 		}
 
@@ -8753,11 +8855,6 @@ void idPlayer::AdjustSpeed( void ) {
 
 	if ( influenceActive == INFLUENCE_LEVEL3 ) {
 		speed *= 0.33f;
-	}
-
-	if(pfl.boosted == true)
-	{
-		speed = speed*speedBoost;
 	}
 	
 //	common->Printf("%s", speed);

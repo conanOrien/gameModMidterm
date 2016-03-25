@@ -600,59 +600,49 @@ bool idItem::GiveToPlayer( idPlayer *player ) {
 		}
 		if(player->team == TEAM_MARINE)
 		{
-			player->pfl.sneak = 1;
-			player->sneakInit = gameLocal.time;
+			player->GivePowerUp(20, 7000, false);
 		}
 	}
 
 	if(player && spawnArgs.GetBool("speed")) //armorshards
 	{
-		if(player->team == TEAM_STROGG )				{
-			if(!player->pfl.boosted)				{
-				player->pfl.boosted = true;
-				player->boostInit = gameLocal.time;
-				player->speedBoost = 1.2f;			}
-			else									{
-				player->boostInit = gameLocal.time;
-				if(player->speedBoost < 2.99)	{
-					player->speedBoost *= 1.2f;	}
-													}	}
-		if(player->team == TEAM_MARINE)					{
-			if(!player->pfl.boosted)				{
-				player->pfl.boosted = true;
-				player->boostInit = gameLocal.time;
-				player->speedBoost = 1.45f;			}
-			else									{
-				player->boostInit = gameLocal.time;
-													}
-														}
+		if(player->team == TEAM_STROGG )		
+		{
+			//compunding speed 
+			player->GivePowerUp(16,3000,false);
+		}
+		if(player->team == TEAM_MARINE)
+		{
+			//statix speed boost
+			player->GivePowerUp(16,5000,false);
+		}
+		
 	}
 
 	if(player && spawnArgs.GetBool( "large" )) //Large Health Orb
 	{
 		if(player->team == TEAM_STROGG )
 		{
+			//Freeze marines
 			for ( int i = 0; i < gameLocal.numClients; i++ )
 			{
 				idPlayer* p = (idPlayer*)gameLocal.entities[ i ];
 					if ( p && p->team == TEAM_MARINE)
 					{
-						player->pfl.freeze = true;
-						player->freezeInit = gameLocal.time;
+						p->GivePowerUp(17,10000,false);
 					}
 			}
 		}
 		if(player->team == TEAM_MARINE)
 		{
-			//spawn powerup effect on all strogg members for 5 sec
+			//spawn glow effect on all strogg members for 5 sec
 			for ( int i = 0; i < gameLocal.numClients; i++ )
 			{
 				idPlayer* p = (idPlayer*)gameLocal.entities[ i ];
-				if ( p && p->team == TEAM_STROGG)
-				{
-					p->pfl.glow = true;
-					p->glowInit = gameLocal.time;
-				}
+					if ( p && p->team == TEAM_STROGG)
+					{
+						p->GivePowerUp(18,17500,false);
+					}
 			}
 	
 		}
@@ -660,9 +650,8 @@ bool idItem::GiveToPlayer( idPlayer *player ) {
 
 	if(player && player->team == TEAM_MARINE && spawnArgs.GetBool( "ungh" ))//small health orb
 	{
-		player->cloakInit = gameLocal.time;
-		player->pfl.cloak = true;
-
+		//cloak player
+		player->GivePowerUp(3,9000,false);
 	}
 
 

@@ -1,4 +1,4 @@
-﻿Build started 3/24/2016 10:36:06 PM.
+﻿Build started 3/24/2016 11:28:40 PM.
      1>Project "D:\College Work\IT266\quake4\idlib.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "D:\College Work\IT266\quake4\Release\idlib.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -15,4 +15,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.11
+Time Elapsed 00:00:00.07

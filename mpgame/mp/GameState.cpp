@@ -897,6 +897,12 @@ void rvTeamDMGameState::Run( void ) {
 	switch( currentState ) {
 		case GAMEON: {
 			int timeLimit = gameLocal.serverInfo.GetInt( "si_timeLimit" ) * 60000;
+			
+			for ( int i = 0; i < gameLocal.numClients; i++ )
+			{
+				idPlayer* player = (idPlayer*)gameLocal.entities[ i ];
+				player->pfl.noFallingDamage = true;
+			}
 
 			if (gameLocal.mpGame.GetScoreForTeam( TEAM_MARINE ) == gameLocal.numClients - 1 || gameLocal.mpGame.TimeLimitHit() )
 			{

@@ -5836,7 +5836,7 @@ void idPlayer::DropPowerups( void ) {
 		}		
 		
 		// These powerups aren't dropped
-		if ( i >= POWERUP_TEAM_AMMO_REGEN && i <= POWERUP_TEAM_DAMAGE_MOD )
+		if ( i >= POWERUP_TEAM_AMMO_REGEN && i <= POWERUP_TEAM_DAMAGE_MOD && i < 16 )
 			continue;
 
 		// Don't drop this either with buying enabled.

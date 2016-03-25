@@ -20,3 +20,12 @@
 	- Rename mpgame.dll to gamex86.dll
 
 	- Copy gamex86.dll into game000.pk4
+
+
+3. Launching a server
+
+	- Open Quake4
+
+	- Load the Mod
+
+	- Create a server; In advanced server settings, make sure to disable the pure server option
